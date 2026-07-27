@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Theme Switcher</title>
+  <style>
+    body {
+      background-color: white;
+      color: black;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      margin-top: 50px;
+    }
+    #themeButton {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="heading">Welcome to Theme Switcher</h1>
+  <button id="themeButton">Switch to Dark</button>
+
+  <script>
+    const button = document.getElementById("themeButton");
+    const heading = document.getElementById("heading");
+    let darkMode = false;
+
+    button.addEventListener("click", function() {
+      if (!darkMode) {
+        document.body.style.backgroundColor = "black";
+        heading.style.color = "white";
+        button.textContent = "Switch to Light";
+        darkMode = true;
+      } else {
+        document.body.style.backgroundColor = "white";
+        heading.style.color = "black";
+        button.textContent = "Switch to Dark";
+        darkMode = false;
+      }
+    });
+  </script>
+</body>
+</html>

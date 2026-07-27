@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Performance Dashboard</title>
+</head>
+<body>
+  <h2>Exercise 10: Employee Performance Dashboard</h2>
+
+  <div class="employee" style="border:2px solid #ccc; padding:15px; margin:10px;">
+    <h3>Alice</h3>
+    <p>Score: <span class="score">92</span></p>
+    <p>Status: <span class="status"></span></p>
+  </div>
+
+  <div class="employee" style="border:2px solid #ccc; padding:15px; margin:10px;">
+    <h3>Bob</h3>
+    <p>Score: <span class="score">75</span></p>
+    <p>Status: <span class="status"></span></p>
+  </div>
+
+  <div class="employee" style="border:2px solid #ccc; padding:15px; margin:10px;">
+    <h3>Charlie</h3>
+    <p>Score: <span class="score">55</span></p>
+    <p>Status: <span class="status"></span></p>
+  </div>
+
+  <button id="updateBtn">Update Performance</button>
+
+  <script>
+    const button = document.getElementById("updateBtn");
+    const employees = document.querySelectorAll(".employee");
+
+    button.addEventListener("click", function() {
+      employees.forEach(emp => {
+        const score = parseInt(emp.querySelector(".score").innerText);
+        const statusEl = emp.querySelector(".status");
+
+        if (score > 85) {
+          statusEl.innerText = "Excellent";
+          emp.style.borderColor = "green";
+          emp.style.backgroundColor = "lightgreen";
+        } else if (score >= 60) {
+          statusEl.innerText = "Good";
+          emp.style.borderColor = "orange";
+          emp.style.backgroundColor = "moccasin";
+        } else {
+          statusEl.innerText = "Needs Improvement";
+          emp.style.borderColor = "red";
+          emp.style.backgroundColor = "lightcoral";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

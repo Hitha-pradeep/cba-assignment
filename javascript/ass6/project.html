@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Quiz Application</title>
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    text-align: center;
+}
+.container{
+    width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border: 1px solid gray;
+}
+h2{
+    color: darkblue;
+}
+#timer{
+    font-weight: bold;
+    color: red;
+    margin-bottom: 15px;
+}
+.option{
+    display: block;
+    text-align: left;
+    margin: 10px 0;
+}
+button{
+    padding: 8px 15px;
+    margin: 10px;
+    cursor: pointer;
+}
+#result{
+    display: none;
+}
+svg{
+    margin-top: 20px;
+}
+#progress{
+    stroke-dasharray: 565;
+    stroke-dashoffset: 565;
+    transition: 1s;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div id="quiz">
+<h2>Online Quiz Application</h2>
+<div id="timer">Time Left : 30 s</div>
+<h3 id="question"></h3>
+<div id="options"></div>
+<div class="buttons">
+<button onclick="previousQuestion()">Previous</button>
+<button onclick="nextQuestion()">Next</button>
+</div>
+</div>
+<div id="result">
+<h2>Quiz Completed 🎉</h2>
+<svg width="220" height="220">
+<circle
+cx="110"
+cy="110"
+r="90"
+stroke="#ddd"
+stroke-width="15"
+fill="none"/>
+<circle
+id="progress"
+cx="110"
+cy="110"
+r="90"
+stroke="green"
+stroke-width="15"
+fill="none"
+stroke-linecap="round"
+transform="rotate(-90 110 110)"/>
+<text
+id="scoreText"
+x="110"
+y="120"
+text-anchor="middle"
+font-size="28"
+font-weight="bold">0/5</text>
+</svg>
+<h3 id="remark"></h3>
+</div>
+</div>
+<script>
+let questions=[
+{
+question:"Which HTML tag is used to include JavaScript?",
+options:["<script>","<js>","<javascript>","<code>"],
+answer:"<script>"
+},
+{
+question:"Which keyword declares a constant variable?",
+options:["var","let","const","static"],
+answer:"const"
+},
+{
+question:"Which function prints output in browser console?",
+options:["print()","console.log()","echo()","write()"],
+answer:"console.log()"
+},
+{
+question:"JavaScript is a ____ language.",
+options:["Programming","Markup","Database","Styling"],
+answer:"Programming"
+},
+{
+question:"Which event occurs when a button is clicked?",
+options:["onclick","onhover","onload","onchange"],
+answer:"onclick"
+}
+];
+questions.sort(()=>Math.random()-0.5);
+let current=0;
+let score=0;
+let answers=new Array(questions.length).fill(null);
+function loadQuestion(){
+document.getElementById("question").innerHTML=
+(current+1)+". "+questions[current].question;
+let options="";
+questions[current].options.forEach(option=>{
+let checked=answers[current]==option?"checked":"";
+options+=`
+<label class="option">
+<input type="radio" name="answer" value="${option}" ${checked}
+onchange="saveAnswer('${option}')">
+${option}
+</label>
+`;
+});
+document.getElementById("options").innerHTML=options;
+}
+function saveAnswer(ans){
+answers[current]=ans;
+}
+function nextQuestion(){
+if(current<questions.length-1)
+current++;
+else
+finishQuiz();
+loadQuestion();
+}
+function previousQuestion(){
+if(current>0){
+current--;
+loadQuestion();
+}
+}
+let time=30;
+let timer=setInterval(function(){
+time--;
+document.getElementById("timer").innerHTML=
+"Time Left : "+time+" s";
+if(time<=0){
+clearInterval(timer);
+finishQuiz();
+}
+},1000);
+function finishQuiz(){
+clearInterval(timer);
+score=0;
+for(let i=0;i<questions.length;i++){
+if(answers[i]==questions[i].answer)
+score++;
+}
+document.getElementById("quiz").style.display="none";
+document.getElementById("result").style.display="block";
+showScore(score,questions.length);
+}
+function showScore(score,total){
+let percentage=(score/total)*100;
+let radius=90;
+let circumference=2*Math.PI*radius;
+let offset=circumference-(percentage/100)*circumference;
+let circle=document.getElementById("progress");
+circle.style.strokeDasharray=circumference;
+circle.style.strokeDashoffset=offset;
+document.getElementById("scoreText").innerHTML=
+score+"/"+total;
+let remark="";
+if(score==5)
+remark="Excellent!";
+else if(score>=3)
+remark="Good Job!";
+else
+remark="Keep Practicing!";
+document.getElementById("remark").innerHTML=remark;
+}
+loadQuestion();
+</script>
+</body>
+</html>

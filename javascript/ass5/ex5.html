@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dynamic Quote Generator</title>
+</head>
+<body>
+  <h2>Exercise 5: Dynamic Quote Generator</h2>
+  <p id="quote">Click the button to see a quote!</p>
+  <button id="generateBtn">Generate Quote</button>
+
+  <script>
+    const quotes = [
+      "The best way to get started is to quit talking and begin doing.",
+      "Don’t let yesterday take up too much of today.",
+      "It’s not whether you get knocked down, it’s whether you get up.",
+      "If you are working on something exciting, it will keep you motivated.",
+      "Success is not in what you have, but who you are."
+    ];
+
+    const quoteEl = document.getElementById("quote");
+    const buttonEl = document.getElementById("generateBtn");
+
+    buttonEl.addEventListener("click", function() {
+      // Pick random quote
+      const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+      quoteEl.textContent = randomQuote;
+
+      // Random font size between 16px and 28px
+      const randomSize = Math.floor(Math.random() * (28 - 16 + 1)) + 16;
+      quoteEl.style.fontSize = randomSize + "px";
+
+      // Random color
+      const colors = ["red", "blue", "green", "purple", "orange"];
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      quoteEl.style.color = randomColor;
+    });
+  </script>
+</body>
+</html>

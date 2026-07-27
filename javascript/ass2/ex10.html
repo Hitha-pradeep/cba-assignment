@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Student Marks Analysis</title>
+</head>
+<body>
+  <h2>Exercise 10: Student Marks Analysis</h2>
+  <script>
+    let marks = [78, 45, 89, 32, 91, 67, 55];
+    let passedCount = 0;
+    let failedCount = 0;
+    let highestMark = marks[0];
+    let total = 0;
+    for (let i = 0; i < marks.length; i++) {
+      if (marks[i] >= 50) {
+        passedCount++;
+      } else {
+        failedCount++;
+      }
+      if (marks[i] > highestMark) {
+        highestMark = marks[i];
+      }
+      total =total + marks[i];
+    }
+    let average = total / marks.length;
+    document.write("Number of students passed: " + passedCount + "<br>");
+    document.write("Number of students failed: " + failedCount + "<br>");
+    document.write("Highest mark: " + highestMark + "<br>");
+    document.write("Average marks: " + average.toFixed(2) + "<br>");
+  </script>
+</body>
+</html>

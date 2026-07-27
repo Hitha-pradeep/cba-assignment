@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Object Input Example</title>
+</head>
+<body>
+  <h1>Create Object from User Input</h1>
+
+  <script>
+    let name = prompt("Enter your name:");
+    let age = prompt("Enter your age:");
+    let city = prompt("Enter your city:");
+
+    let person = {
+      name: name,
+      age: Number(age), // convert to number
+      city: city
+    };
+
+    document.write("User Object:<br>");
+    document.write("Name: " + person.name + "<br>");
+    document.write("Age: " + person.age + "<br>");
+    document.write("City: " + person.city + "<br>");
+  </script>
+</body>
+</html>

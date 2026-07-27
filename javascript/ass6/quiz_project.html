@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Online Quiz</title>
+</head>
+<body>
+  <h1>Quiz Application</h1>
+  <div id="quiz"></div>
+  <button id="prev">Previous</button>
+  <button id="next">Next</button>
+  <button id="submit">Submit</button>
+  <p id="timer"></p>
+  <div id="result"></div>
+
+  <script>
+    const questions = [
+      { question: "Capital of France?", options: ["Paris", "London", "Berlin"], answer: "Paris" },
+      { question: "2 + 2 = ?", options: ["3", "4", "5"], answer: "4" },
+      { question: "Largest planet?", options: ["Earth", "Jupiter", "Mars"], answer: "Jupiter" }
+    ];
+
+    let current = 0;
+    let score = 0;
+    let time = 30;
+
+    function showQuestion(index) {
+      const q = questions[index];
+      document.getElementById("quiz").innerHTML =
+        `<h3>${q.question}</h3>` +
+        q.options.map(opt => `<button onclick="checkAnswer('${opt}')">${opt}</button>`).join("");
+    }
+
+    function checkAnswer(opt) {
+      if (opt === questions[current].answer) score++;
+    }
+
+    document.getElementById("next").onclick = () => {
+      if (current < questions.length - 1) {
+        current++;
+        showQuestion(current);
+      }
+    };
+
+    document.getElementById("prev").onclick = () => {
+      if (current > 0) {
+        current--;
+        showQuestion(current);
+      }
+    };
+
+    document.getElementById("submit").onclick = () => {
+      document.getElementById("result").innerHTML = `Your score: ${score}/${questions.length}`;
+    };
+
+    // Timer
+    setInterval(() => {
+      if (time > 0) {
+        time--;
+        document.getElementById("timer").textContent = `Time left: ${time}s`;
+      } else {
+        document.getElementById("result").innerHTML = `Time's up! Your score: ${score}/${questions.length}`;
+      }
+    }, 1000);
+
+    // Start quiz
+    showQuestion(current);
+  </script>
+</body>
+</html>

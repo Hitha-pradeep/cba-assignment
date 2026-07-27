@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Array Example</title>
+</head>
+<body>
+  <h2>Working with Numbers Array</h2>
+  <script>
+    let numbers = [12, 45, 67, 23, 89];
+
+    document.write("Numbers: " + numbers.join(", ") + "<br/>");
+
+    document.write("First Number: " + numbers[0] + "<br/>");
+    document.write("Last Number: " + numbers[numbers.length - 1] + "<br/>");
+
+    document.write("Total Numbers: " + numbers.length + "<br/>");
+
+    document.write("Is 23 in the array? " + numbers.includes(23) + "<br/>");
+    document.write("Is 100 in the array? " + numbers.includes(100) + "<br/>");
+
+
+    document.write("Index of 67: " + numbers.indexOf(67) + "<br/>");
+    document.write("Index of 50: " + numbers.indexOf(50) + "<br/>");
+
+    document.write("Maximum Number: " + Math.max(...numbers) + "<br/>");
+    document.write("Minimum Number: " + Math.min(...numbers) + "<br/>");
+
+  </script>
+</body>
+</html>

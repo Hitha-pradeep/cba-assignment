@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interactive Pricing Card</title>
+</head>
+<body>
+  <h2>Exercise 8: Interactive Pricing Card</h2>
+
+  <div class="card" style="display:inline-block; border:1px solid #ccc; padding:20px; margin:10px; cursor:pointer;">
+    <h3>Basic</h3>
+    <p>$10/month</p>
+  </div>
+
+  <div class="card" style="display:inline-block; border:1px solid #ccc; padding:20px; margin:10px; cursor:pointer;">
+    <h3>Standard</h3>
+    <p>$20/month</p>
+  </div>
+
+  <div class="card" style="display:inline-block; border:1px solid #ccc; padding:20px; margin:10px; cursor:pointer;">
+    <h3>Premium</h3>
+    <p>$30/month</p>
+  </div>
+
+  <h3 id="selectedPlan">Selected Plan: None</h3>
+
+  <script>
+    const cards = document.querySelectorAll(".card");
+    const selectedPlanEl = document.getElementById("selectedPlan");
+
+    cards.forEach(card => {
+      card.addEventListener("click", function() {
+        // Remove highlight from all cards
+        cards.forEach(c => c.style.backgroundColor = "");
+
+        // Highlight selected card
+        card.style.backgroundColor = "lightgreen";
+
+        // Update selected plan text
+        const planName = card.querySelector("h3").textContent;
+        selectedPlanEl.textContent = "Selected Plan: " + planName;
+      });
+    });
+  </script>
+</body>
+</html>

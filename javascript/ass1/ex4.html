@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Find Largest Number</title>
+</head>
+<body>
+  <h1>Largest Number Finder</h1>
+
+  <script>
+    function findLargest(num1, num2) {
+      if (num1 > num2) {
+        return num1;
+      } else {
+        return num2;
+      }
+    }
+    let result = findLargest(35, 50);
+    document.write("Largest Number: " + result + "<br>");
+    console.log("Largest Number: " + result);
+
+    function findLargestMultiple(...numbers) {
+      let largest = numbers[0];
+      for (let i = 1; i < numbers.length; i++) {
+        if (numbers[i] > largest) {
+          largest = numbers[i];
+        }
+      }
+      return largest;
+    }
+    let resultMultiple = findLargestMultiple(35, 50, 72, 18, 99, 64);
+    document.write("Largest Number (Multiple): " + resultMultiple);
+    console.log("Largest Number (Multiple): " + resultMultiple);
+  </script>
+</body>
+</html>

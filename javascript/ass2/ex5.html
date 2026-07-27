@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Count Positive, Negative and Zero</title>
+</head>
+<body>
+  <h2>Exercise 5: Count Positive, Negative and Zero</h2>
+  <script>
+    let numbers = [10, -5, 0, 20, -8, 15, 0];
+    let positiveCount = 0;
+    let negativeCount = 0;
+    let zeroCount = 0;
+    for (let i = 0; i < numbers.length; i++) {
+      if (numbers[i] > 0) {
+        positiveCount++;
+      } else if (numbers[i] < 0) {
+        negativeCount++;
+      } else {
+        zeroCount++;
+      }
+    }
+    document.write("Positive numbers: " + positiveCount + "<br>");
+    document.write("Negative numbers: " + negativeCount + "<br>");
+    document.write("Zeros: " + zeroCount + "<br>");
+  </script>
+</body>
+</html>

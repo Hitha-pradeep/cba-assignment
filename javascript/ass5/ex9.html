@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do Priority Manager</title>
+</head>
+<body>
+  <h2>Exercise 9: To-Do Priority Manager</h2>
+
+  <ul id="taskList">
+    <li class="task high">Finish project report</li>
+    <li class="task completed">Buy groceries</li>
+    <li class="task">Call a friend</li>
+    <li class="task high">Prepare for exam</li>
+    <li class="task completed">Pay electricity bill</li>
+  </ul>
+
+  <p id="pendingCount">Pending Tasks: 0</p>
+  <button id="updateBtn">Update Tasks</button>
+
+  <script>
+    const button = document.getElementById("updateBtn");
+    const tasks = document.querySelectorAll(".task");
+    const pendingCountEl = document.getElementById("pendingCount");
+
+    button.addEventListener("click", function() {
+      let pendingCount = 0;
+
+      tasks.forEach(task => {
+        // High-priority tasks → red
+        if (task.classList.contains("high")) {
+          task.style.color = "red";
+        }
+
+        // Completed tasks → green + line-through
+        if (task.classList.contains("completed")) {
+          task.style.color = "green";
+          task.style.textDecoration = "line-through";
+        } else {
+          pendingCount++;
+        }
+      });
+
+      // Update pending count
+      pendingCountEl.textContent = "Pending Tasks: " + pendingCount;
+    });
+  </script>
+</body>
+</html>
